@@ -6,5 +6,13 @@ use strict;
 use warnings;
 use diagnostics;
 
-my $apple_variety;
-$apple_variety= "Red Delicious";
+my $file = "passwd.txt";
+open my $my_file, $file or die "Could not open $file: $!";
+
+while (my $line = <$my_file>){
+	my @my_list = split(/:/, $line);
+	if ($my_list[2] % 2 == 0){
+		print ("$my_list[0], $my_list[2] \n");
+	}
+}
+
