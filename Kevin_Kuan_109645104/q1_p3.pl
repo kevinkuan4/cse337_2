@@ -16,7 +16,7 @@ while (my $line = <$my_file>){
 		$hash{$my_list[3]}++;
 	}
 	else{
-		$hash{$my_list[3]}=0;
+		$hash{$my_list[3]}=1;
 	}
 }
 
