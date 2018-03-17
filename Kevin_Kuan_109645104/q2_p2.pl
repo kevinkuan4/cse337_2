@@ -1,4 +1,4 @@
-#a Kevin Kuan
+# Kevin Kuan
 # 109645104
 # CSE 3337 HW 2
 
