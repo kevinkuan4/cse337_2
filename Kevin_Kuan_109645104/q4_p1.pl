@@ -25,14 +25,18 @@ if (-e $filename){
 	}
 
 	# Reads from file
-	use Cwd qw(cwd);
-	my $dir = cwd;
-	print "$dir\n";
+	#use Cwd qw(cwd);
+	#my $dir = cwd;
+	#print "$dir\n";
 	open (my $fh, "+<", $filename) or die "Can't open $filename: $!";
 	while (<$fh>){
-		push @temp_storage, $_;
+		my $temp_line = $_;
+		chomp $temp_line;
+		push @temp_storage, $temp_line;
 		$line_count++;
 	}
+	my $bckup = "./backup/$filename";
+
 	# 10 lines or under
 	if ($line_count <= 10){
 		print "$filename has no more than 10 lines\n";
@@ -52,26 +56,40 @@ if (-e $filename){
 	# more than 10 lines
 	else{
 		while ($valid_input == 0) {
-			print "Enter 'c' to backup the first 10 lines. 'o' to overwrite without creatomg a backup\n";
+			print "Enter 'c' to backup the first 10 lines. 'o' to overwrite without creating a backup\n";
+			
 			my $usr_input = <STDIN>;
 			chomp $usr_input;
 			# Check if c
 			if ($usr_input eq "c"){
+
 				$valid_input = 1;
-				print"$usr_input is good\n";
+				#print"$usr_input is good\n";
+				my $bckup = "./backup/$filename";
+				open (my $bu, ">", $bckup) or die "Can't write $bckup: $!";
+				for ($i = 0; $i < 10; $i=$i+1){
+					print $bu $temp_storage[$i];
+				}
+				print "Ok, old file backed up under backup directory\n";
+				close $bu;	
+				print $fh "Perl is cool!\n";
+				close $fh;
+				print "Wrote to file $filename\n";
+
 			}
 			
 			# Check if o
 			elsif ($usr_input eq "o"){
 				$valid_input = 1;
-				print"$usr_input is good\n";
-
+				#print"$usr_input is good\n";
+				print $fh "Perl is cool!\n";
+				close $fh;
+				print "Wrote to file $filename\n";
 			}
 		
 		}
 	}
 }
-
 # file does not exists
 else {
 	open my $fh,">$filename" or die "Can't open $filename: $!";
