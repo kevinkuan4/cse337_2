@@ -3,7 +3,7 @@
 # Homework 2
 
 my %curr_ex = (
-	"usd"=> 1.0,
+	"usd" => 1.0,
 	"eur" => 0.81,
 	"cad" => 1.29,
 	"inr" => 65.2,
@@ -15,7 +15,6 @@ my %curr_ex = (
 
 my $init_curr;
 my $tar_curr;
-
 print "Exchangeable currency: usd, eur, cad, inr, jpy, vnd, krw, btc\n";
 print "Enter the current currency: ";
 

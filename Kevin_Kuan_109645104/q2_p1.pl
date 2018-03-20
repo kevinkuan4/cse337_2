@@ -6,20 +6,27 @@
 use strict;
 use warnings;
 
+sub sortlines{
+	my $filename = $_[0];
+	my $fh;
+	open $fh, "<$filename" or die "Can't open input file: $!";
 
-my $filename = $ARGV[0];
-my $fh;
-open $fh, "<$filename" or die "Can't open input file: $!";
+	my @array;
+	while (<>){
+		my $line = $_;
+		chomp $line;
+		push @array, $line; 
+	}
 
-my @array;
-while (<>){
-	my $line = $_;
-	chomp $line;
-	push @array, $line; 
+	my @sorted_array = sort { length($a) <=> length($b) } @array;
+
+	# prints to terminal
+	foreach my $line (@sorted_array){
+		print "$line\n";
+	}
+	# returns
+	@sorted_array;
 }
 
-my @sorted_array = sort { length($a) <=> length($b) } @array;
-
-foreach my $line (@sorted_array){
-	print "$line\n";
-}
+# Calling subroutine
+my @x = sortlines($ARGV[0]);

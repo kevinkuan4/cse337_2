@@ -43,4 +43,3 @@ _installer:*:96:-2:Installer:/var/empty:/usr/bin/false
 _atsserver:*:97:97:ATS Server:/var/empty:/usr/bin/false
 _ftp:*:98:-2:FTP Daemon:/var/empty:/usr/bin/false
 _unknown:*:99:99:Unknown User:/var/empty:/usr/bin/false
-Zhibo Yang:*:100:24:New User:/home/:/bin/bash

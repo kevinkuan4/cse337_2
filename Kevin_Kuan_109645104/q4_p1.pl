@@ -28,6 +28,8 @@ if (-e $filename){
 	#use Cwd qw(cwd);
 	#my $dir = cwd;
 	#print "$dir\n";
+
+
 	open (my $fh, "+<", $filename) or die "Can't open $filename: $!";
 	while (<$fh>){
 		my $temp_line = $_;
@@ -38,6 +40,7 @@ if (-e $filename){
 	my $bckup = "./backup/$filename";
 
 	# 10 lines or under
+	## Overwrite
 	if ($line_count <= 10){
 		print "$filename has no more than 10 lines\n";
 		my $bckup = "./backup/$filename";
