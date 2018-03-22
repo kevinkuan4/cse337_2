@@ -1,6 +1,8 @@
 # Kevin Kuan
 # CSE 337
 # Homework 2
+use strict;
+use warnings;
 
 print "Enter file name: ";
 my $filename = <STDIN>; 
@@ -31,15 +33,14 @@ if (-e $filename){
 	#print "$dir\n";
 
 
-	open (my $fh, "+<", $filename) or die "Can't open $filename: $!";
+	open (my $fh, "<", $filename) or die "Can't open $filename: $!";
 	while (<$fh>){
-		my $temp_line = $_;
-		chomp $temp_line;
-		push @temp_storage, $temp_line;
+		chomp;
+		push @temp_storage, $_;
 		$line_count++;
 	}
+	close $fh;
 	my $bckup = "./backup/$filename";
-
 	# 10 lines or under
 	## Overwrite
 	if ($line_count <= 10){
@@ -47,11 +48,12 @@ if (-e $filename){
 		my $bckup = "./backup/$filename";
 		open (my $bu, ">", $bckup) or die "Can't write $bckup: $!";
 		foreach my $element (@temp_storage){
-			print $bu "$element";
+			print $bu "$element\n";
 	}
 		close $bu;
 		print "Ok, old file backed up under backup directory\n";
 		
+		open (my $fh, ">", $filename) or die "Can't open $filename: $!";
 		print $fh "Perl is cool!\n";
 		close $fh;
 		print "Wrote to file $filename\n";
@@ -59,6 +61,8 @@ if (-e $filename){
 
 	# more than 10 lines
 	else{
+		
+		open (my $fh, ">", $filename) or die "Can't open $filename: $!";
 		while ($valid_input == 0) {
 			print "Enter 'c' to backup the first 10 lines. 'o' to overwrite without creating a backup\n";
 			
@@ -71,13 +75,12 @@ if (-e $filename){
 				#print"$usr_input is good\n";
 				my $bckup = "./backup/$filename";
 				open (my $bu, ">", $bckup) or die "Can't write $bckup: $!";
-				for ($i = 0; $i < 10; $i=$i+1){
-					print $bu $temp_storage[$i];
+				for (my $i = 0; $i < 10; $i=$i+1){
+					print $bu "$temp_storage[$i]\n";
 				}
 				print "Ok, old file backed up under backup directory\n";
 				close $bu;	
 				print $fh "Perl is cool!\n";
-				close $fh;
 				print "Wrote to file $filename\n";
 
 			}
@@ -87,12 +90,12 @@ if (-e $filename){
 				$valid_input = 1;
 				#print"$usr_input is good\n";
 				print $fh "Perl is cool!\n";
-				close $fh;
 				print "Wrote to file $filename\n";
 			}
 		
 		}
 	}
+	close $fh;
 }
 
 # file does not exists
