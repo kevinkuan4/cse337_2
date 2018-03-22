@@ -9,6 +9,7 @@ chomp $filename;
 my $valid_input = 0;
 my @temp_storage;
 my $line_count = 0;
+
 # file exists
 if (-e $filename){
 	print "$filename already exists. ";
@@ -93,6 +94,7 @@ if (-e $filename){
 		}
 	}
 }
+
 # file does not exists
 else {
 	open my $fh,">$filename" or die "Can't open $filename: $!";
