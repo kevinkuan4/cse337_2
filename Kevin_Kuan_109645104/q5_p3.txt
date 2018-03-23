@@ -10,9 +10,9 @@ Matches:
 -1.F
 
 Mismatches:
--+1023F
+-+1023ds
 566.55FF
-+3132.F 3
++3132,F 3
 
 -----------------------------------------
 2) s/(#?)1|one/[\1January]/ig
@@ -26,5 +26,10 @@ Mismatches:
 3) /((.*?)\d)\s\2/
 
 Matches:
+a5 a
+5444 544
+hello^#@4 hello^#@
 
 Mismatches:
+hello45 hello45
+. hello12 . hello12
