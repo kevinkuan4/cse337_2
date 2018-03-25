@@ -18,9 +18,14 @@ Mismatches:
 2) s/(#?)1|one/[\1January]/ig
 
 Matches:
-s(#)
+#1
+ONE
+one
 
 Mismatches:
+#ONE
+one#
+1#one
 
 -----------------------------------------
 3) /((.*?)\d)\s\2/
@@ -32,4 +37,5 @@ hello^#@4 hello^#@
 
 Mismatches:
 hello45 hello45
-. hello12 . hello12
+carcar 2  carcar
+1234 1234
